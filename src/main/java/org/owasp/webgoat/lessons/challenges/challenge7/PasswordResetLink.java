@@ -1,5 +1,11 @@
+<<<<<<< Updated upstream:src/main/java/org/owasp/webgoat/lessons/challenges/challenge7/PasswordResetLink.java
 package org.owasp.webgoat.lessons.challenges.challenge7;
 
+=======
+package org.owasp.webgoat.challenges.challenge7;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+>>>>>>> Stashed changes:webgoat-lessons/challenge/src/main/java/org/owasp/webgoat/challenges/challenge7/PasswordResetLink.java
 import java.util.Random;
 
 /**
@@ -10,8 +16,18 @@ import java.util.Random;
  */
 public class PasswordResetLink {
 
+    private SecureRandom random;
+
+    {
+        try {
+            random = SecureRandom.getInstance("NativePRNG");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
     public String createPasswordReset(String username, String key) {
-        Random random = new Random();
+
         if (username.equalsIgnoreCase("admin")) {
             //Admin has a fix reset link
             random.setSeed(key.length());
